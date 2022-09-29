@@ -33,48 +33,62 @@
                 width: 100px;
                 height: 15px;
             }
+            body {
+                font-family: 'Nunito', sans-serif;
+            }
+            a:hover {
+                color: green;
+            }
         </style>
     </head>
     <body>
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-        <form action="" method="post">Заполните форму<br>
-            @csrf
-            URL-адрес для проверки
-            <br>
-            <input type="text" name="URLaddress" value="https://">
-            <br>
-            Укажите интервал между проверками (в минутах): 
-            <br>
-                <select name="frequency">                   
-                    <option value="1">1</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                </select> <br>
-            Укажите количество повторений в случае ошибки: <span class="error">*</span>
-            <br>
-                <select name="quantity">
-                    <option value="0">0</option>                   
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select> <br>
-            <input type="submit" value="Проверить" name="send"><br>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        </form>         
+        @if (!isset($message)) 
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="" method="post">Заполните форму<br> 
+                <span class="error">*обязательные поля</span> <br>
+                @csrf
+                URL-адрес для проверки <span class="error">*</span>
+                <br>
+                <input type="text" name="URLaddress" value="https://">
+                <br>
+                Укажите интервал между проверками (в минутах): <span class="error">*</span> 
+                <br>
+                    <select name="frequency">                   
+                        <option value="1">1</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                    </select> <br>
+                Укажите количество повторений: <span class="error">*</span>
+                <br>
+                    <select name="quantity">
+                        <option value="0">0</option>                   
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select> <br>
+                <input type="submit" value="Проверить" name="send"><br>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+            </form>
+        @else
+            <p>Проверка началась</p>
+            <a href="/">Назад</a><br>  
+            <a href="/results">Смотреть результаты проверок</a><br>
+            <a href="/url_list">Посмотреть список запрошенных URL-адресов</a><br>
+        @endif        
     </body>
 </html>

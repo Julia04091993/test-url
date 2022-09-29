@@ -35,7 +35,7 @@
         </style>
     </head>
     <body>
-        <a href="/url-list">Посмотреть список запрошенных URL-адресов</a><br> 
+        <a href="/url_list">Посмотреть список запрошенных URL-адресов</a><br> 
         <a href="/">Назад</a><br> 
         <table>
             <tr>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\UrllistController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,5 +17,5 @@ use App\Http\Controllers\ResultsController;
 
 Route::get('/', [CheckController::class, 'create']);
 Route::post('/', [CheckController::class, 'store']);
-Route::get('/results/', [ResultsController::class, 'show_results']);
-Route::get('/url-list', [ResultsController::class, 'show_urls']);
+Route::get('/results', [ResultsController::class, 'show_results']);
+Route::get('/url_list', [UrllistController::class, 'show_urls']);

@@ -18,16 +18,37 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            th {
+				border: 1px solid powderblue;
+				padding: 10px;
+			}
+			td {
+				border: 1px solid powderblue;
+				padding: 10px;
+			}
             a:hover {
                 color: green;
             }
         </style>
     </head>
     <body>
-        {{ $message }}
-        <br>
-        <a href="/">Назад</a><br>  
-        <a href="/results/">Смотреть результаты проверок</a><br>
-        <a href="/url-list">Посмотреть список запрошенных URL-адресов</a><br>   
+        <a href="/results">Смотреть результаты проверок</a><br>
+        <a href="/">Назад</a><br>
+        <table>
+            <tr>
+                <th>Дата создания</th>
+                <th>URL-адрес</th>
+                <th>Частота запроса</th>
+                <th>Количество попыток</th>
+            </tr>
+            @foreach ($urls as $url)
+                <tr>
+                        <td>{{$url->creation_date}}</td>
+                        <td>{{$url->url}}</td>
+                        <td>{{$url->frequency}}</td>
+                        <td>{{$url->quantity}}</td>
+                </tr>
+            @endforeach
+        </table> 
     </body>
 </html>
